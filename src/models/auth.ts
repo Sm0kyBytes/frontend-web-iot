@@ -15,6 +15,11 @@ export interface UserModel {
   create_at?: Date;
 }
 
-export interface UserWithTokenModel extends UserModel {
+export interface UserProfile {
+  username: string;
+  email: string;
+}
+
+export interface UserProfileWithToken extends UserProfile {
   token: string;
 }

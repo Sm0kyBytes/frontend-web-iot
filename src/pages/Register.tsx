@@ -1,20 +1,15 @@
 import React, { useState } from "react";
 import { RegisterModel } from "../models/auth";
+import { useAuth } from "../context/authentication";
+
 const RegisterPage: React.FC = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const authContext = useAuth();
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data: RegisterModel = {
-      username,
-      password,
-      email,
-    };
-    console.log(data);
-
-    // register(data);
+    authContext?.registerUser(email, username, password);
   };
   return (
     <div className="page-container">
