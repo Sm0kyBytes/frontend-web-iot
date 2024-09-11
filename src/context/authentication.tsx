@@ -58,13 +58,14 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         const token = response.data.token;
         localStorage.setItem("token", token);
         interface UserDataFromToken extends JwtPayload {
-          userId?: number;
+          id?: number;
           email?: string;
           username?: string;
         }
         const userDataFromToken: UserDataFromToken =
           jwtDecode<JwtPayload>(token);
         const userObj = {
+          id: userDataFromToken?.id || -1,
           username: userDataFromToken?.username || "",
           email: userDataFromToken?.email || "",
         };
