@@ -15,6 +15,9 @@ const Nav: React.FC = () => {
         <li>
           <Link to="/register">Register here</Link>
         </li>
+        <li>
+          <Link to="/manage">Manage Devices here</Link>
+        </li>
       </ul>
     </nav>
   );
