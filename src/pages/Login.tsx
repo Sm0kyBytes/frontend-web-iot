@@ -36,8 +36,8 @@ const LoginPage: React.FC = () => {
       password,
     };
     const message = await authContext?.loginUser(email, password);
-    if (message && message !== "Login successfully.") {
-      setMessageError(message);
+    if (message === "Login successfully.") {
+      setMessageError(null);
     } else if (message) {
       setMessageError(message);
     } else {
