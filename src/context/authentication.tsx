@@ -7,8 +7,12 @@ import { jwtDecode, JwtPayload } from "jwt-decode";
 type UserContextType = {
   user: UserProfile | null;
   token: string | null;
-  registerUser: (email: string, username: string, password: string) => void;
-  loginUser: (email: string, password: string) => void;
+  registerUser: (
+    email: string,
+    username: string,
+    password: string
+  ) => Promise<string>;
+  loginUser: (email: string, password: string) => Promise<string>;
   logout: () => void;
   isAuthenticated: () => boolean;
 };
@@ -23,6 +27,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<UserProfile | null>(null);
   const navigate = useNavigate();
+
   const registerUser = async (
     email: string,
     username: string,
@@ -37,14 +42,22 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
           password,
         }
       );
-      console.log(response);
-      console.log(response.status);
 
       if (response.status === 200) {
         navigate("/login");
+        return "User has been created successfully.";
+      } else {
+        return "Error is occur during registered.";
       }
-    } catch (err) {
-      alert("Server error occurred, Please try again later.");
+    } catch (err: any) {
+      switch (err?.status) {
+        case 400:
+          return "Invalid information.";
+        case 404:
+          return "This email is already registered.";
+        default:
+          return "Server error occurred, Please try again later.";
+      }
     }
   };
 
@@ -54,6 +67,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         email,
         password,
       });
+
       if (response.data.token) {
         const token = response.data.token;
         localStorage.setItem("token", token);
@@ -73,9 +87,19 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         setToken(response?.data.token!);
         setUser(userObj!);
         navigate("/");
+        return "Login successfully.";
+      } else {
+        return "Error is occur during login.";
       }
-    } catch (err) {
-      alert("Server error occurred, Please try again later.");
+    } catch (err: any) {
+      switch (err?.status) {
+        case 400:
+          return "Invalid username or password.";
+        case 404:
+          return "Invalid username or password.";
+        default:
+          return "Server error occurred, Please try again later.";
+      }
     }
   };
 
