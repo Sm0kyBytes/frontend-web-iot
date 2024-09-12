@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { UserProfile } from "../models/auth";
@@ -26,7 +26,18 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<UserProfile | null>(null);
+  const [isReady, setIsReady] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
+    if (user && token) {
+      setUser(JSON.parse(user));
+      setToken(token);
+    }
+    setIsReady(true);
+  }, []);
 
   const registerUser = async (
     email: string,
@@ -117,7 +128,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     <UserContext.Provider
       value={{ loginUser, user, token, logout, isAuthenticated, registerUser }}
     >
-      {children}
+      {isReady ? children : null}
     </UserContext.Provider>
   );
 };
