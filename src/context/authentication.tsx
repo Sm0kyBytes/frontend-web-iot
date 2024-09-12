@@ -22,7 +22,7 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<UserProfile | null>(null);
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
   const registerUser = async (
     email: string,
     username: string,
@@ -41,7 +41,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
       console.log(response.status);
 
       if (response.status === 200) {
-        // navigate("/login");
+        navigate("/login");
       }
     } catch (err) {
       alert("Server error occurred, Please try again later.");
@@ -72,7 +72,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         localStorage.setItem("user", JSON.stringify(userObj));
         setToken(response?.data.token!);
         setUser(userObj!);
-        // navigate("/homepage");
+        navigate("/");
       }
     } catch (err) {
       alert("Server error occurred, Please try again later.");
@@ -86,7 +86,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     localStorage.removeItem("user");
     setUser(null);
     setToken(null);
-    // navigate("/");
+    navigate("/");
   };
 
   return (
