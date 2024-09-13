@@ -13,7 +13,7 @@ const useDevices = () => {
     try {
       setIsError(false);
       setIsLoading(true);
-      const response = await axios.get(`http://localhost:4000/devices`);
+      const response = await axios.get(`http://localhost:4000/devices/user`);
       const devicesInfo: DeviceModalAdjust[] = response.data;
       setDevices(devicesInfo);
       setIsLoading(false);
@@ -40,8 +40,6 @@ const useDevices = () => {
   };
 
   const createDevice = async (device: DeviceModalAdjust) => {
-    console.log(device);
-
     try {
       setIsError(false);
       setIsLoading(true);

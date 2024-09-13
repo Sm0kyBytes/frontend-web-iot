@@ -21,7 +21,6 @@ const Nav: React.FC = () => {
   const goToLoginPage = (event: React.MouseEvent<HTMLElement>) => {
     navigate("/login");
   };
-  console.log(authContext?.user);
 
   return (
     <Box sx={{ flexGrow: 1 }}>

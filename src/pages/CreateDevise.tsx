@@ -11,7 +11,6 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Navigate } from "react-router-dom";
 
 const CreateDevicePage: React.FC = () => {
   const [deviceName, setDeviceName] = useState("");
@@ -45,7 +44,7 @@ const CreateDevicePage: React.FC = () => {
     <Card sx={cardStyle}>
       <CardContent>
         <Typography gutterBottom sx={{ color: "text.secondary", fontSize: 14 }}>
-          Create Form
+          Create Device Form
         </Typography>
         <Box
           component="form"
@@ -98,65 +97,6 @@ const CreateDevicePage: React.FC = () => {
         </Button>
       </CardActions>
     </Card>
-    // <div className="page-container">
-    //   <h1>Create Device Page</h1>
-    //   <div className="create-form-container">
-    //     <form className="create-form" onSubmit={handleSubmit}>
-    //       <h2>Create Form</h2>
-    //       <div className="input-container">
-    //         <label>
-    //           Devise name:
-    //           <input
-    //             id="deviceName"
-    //             name="deviceName"
-    //             type="text"
-    //             placeholder="Enter device name here"
-    //             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-    //               setDeviceName(event.target.value);
-    //             }}
-    //             value={deviceName}
-    //             required
-    //           />
-    //         </label>
-    //       </div>
-    //       <div className="input-container">
-    //         <label>
-    //           description:
-    //           <input
-    //             id="description"
-    //             name="description"
-    //             type="text"
-    //             placeholder="Enter description here"
-    //             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-    //               setDescription(event.target.value);
-    //             }}
-    //             value={description}
-    //             required
-    //           />
-    //         </label>
-    //       </div>
-    //       <div className="input-container">
-    //         <label>
-    //           Category:
-    //           <input
-    //             id="category"
-    //             name="category"
-    //             type="text"
-    //             placeholder="Enter category here"
-    //             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-    //               setCategory(event.target.value);
-    //             }}
-    //             value={category}
-    //             required
-    //           />
-    //         </label>
-    //       </div>
-    //       <div className="form-actions">
-    //         <button type="submit">Submit</button>
-    //       </div>
-    //     </form>
-    //   </div>
-    // </div>
   );
 };
 
