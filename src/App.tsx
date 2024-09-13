@@ -7,6 +7,7 @@ import NotFound from "./pages/NotFound";
 import RegisterPage from "./pages/Register";
 import ManagePage from "./pages/Manage";
 import CreateDevicePage from "./pages/CreateDevise";
+import EditDevicePage from "./pages/EditDevice";
 import Nav from "./components/nav/Nav";
 import BgImage from "./public/images/bg-example-image.svg";
 const App: React.FC = () => {
@@ -34,7 +35,7 @@ const App: React.FC = () => {
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/manage" element={<ManagePage />} />
               <Route path="/manage/create" element={<CreateDevicePage />} />
-              {/* <Route path="/manage/edit" element={<ManagePage />} /> */}
+              <Route path="/manage/edit/:id" element={<EditDevicePage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </div>

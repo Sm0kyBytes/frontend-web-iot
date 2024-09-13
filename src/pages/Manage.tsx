@@ -64,7 +64,12 @@ const ManagePage: React.FC = () => {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small">Edit</Button>
+                    <Button
+                      size="small"
+                      onClick={() => navigate(`/manage/edit/${device.id}`)}
+                    >
+                      Edit
+                    </Button>
                     <Button
                       size="small"
                       onClick={() => deleteDevise(device.id || -1)}
